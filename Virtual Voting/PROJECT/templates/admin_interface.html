@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block body %}
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='custom.css') }}">
+<section>
+<div class="white_tile">
+    <div class="page-header">
+        <h2>Add Candidates</h2>
+    </div>
+    <div class="row">
+        <div class="span6">
+            <form class="form-horizontal" id="add_candidate_form" method="POST" action="/candidate/new">
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label">Candidate's Email ID</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="email" name="email" placeholder="Eg:abc@gmail.com">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Candidate's Username</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="username" name="username" placeholder="Eg:abc">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Candidate's Position</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="pid" name="pid" placeholder="1|2|3|4">
+                        </div>
+                    </div>
+              
+                   
+                    <div class="form-actions">
+                        <input type="submit" class="btn btn-primary" value="Add Candidate" ></input>
+                        <input type="reset" class="btn" id="reset_btn" value="Reset"></input>
+                    
+                        <small class="add_status">
+                        </small>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+       
+    </div>
+</div>
+</section>
+
+<section>
+<div class='white_tile'>
+    <div class="page-header">
+        <h2> <small> Made a Mistake? </small></h2> 
+        <h3>Delete Candidate</h3>
+    </div>
+    <div class="row">
+        <div class="span8">
+            <form id="delete_candidate_form" method="POST" action="/candidate/delete" class="well form-inline">
+                <input type="text" class="input" name="email" placeholder="Eg:abc@gmail.com">
+                
+                <input type="submit" class="btn btn-inverse" value="Delete Candidate" onclick="return confirm('Are you sure to Delete data');"></button>
+           
+        </div>
+        <div class="span3">
+            <div class="candidate_delete_gen">
+                <h2 id="candidate_delete_message"></h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+</section>
+
+{% endblock %}
+

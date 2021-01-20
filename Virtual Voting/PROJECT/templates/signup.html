@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Signup
+{% endblock title %}
+
+{% block body %}
+<style>
+   body {background:url('/static/tt1.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+  h4{
+    text-align: center;
+    text-shadow: 2px 2px;
+  }
+  input[type=text],[type=password],[type=email] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid black;
+  border-radius: 4px;
+}
+label{
+    color: black;
+    font-weight: bold;
+  }
+</style>
+<div class="container mt-3">
+
+<div class="row">
+
+
+<div class="col-md-4">
+
+</div>
+
+<div class="col-md-4 jumbotron" style="background-color:rgba(100, 100, 100, 0.7)">
+<h4 >User Sign Up</h4>
+<br>
+
+
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+
+<form action="/signup" method="POST">
+
+  <div class="form-group">
+    <label for="username">UserName</label>
+    <input type="text" class="form-control" id="username" name="username" required >
+
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" name="email" required>
+    <small color="black" style="font-weight: bold;">We'll never share your Details with anyone else.</small>
+  </div>
+
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password" required>
+  </div>
+  
+  <button type="submit" style="background-color:gainsboro">Signup</button>
+</form>
+<br>
+<p style="font-weight: bold;">Already a User?<a href="/login" style="font-weight: bold;">Login</a></p>
+
+</div>
+
+<div class="col-md-4">
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+{% endblock body %}
