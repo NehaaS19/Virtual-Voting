@@ -75,14 +75,6 @@ class Admin(db.Model):
     email=db.Column(db.String(50))
     password=db.Column(db.String(1000))
 
-class Trigr(db.Model):
-    tid=db.Column(db.Integer,primary_key=True)
-    pid=db.Column(db.Integer)
-    email=db.Column(db.String(50))
-    name=db.Column(db.String(50))
-    action=db.Column(db.String(50))
-    timestamp=db.Column(db.String(50))
-
 
 # here we will pass endpoints and run the fuction
 @app.route('/')
@@ -213,7 +205,6 @@ def admin_login():
 @app.route('/candidate/delete', methods=["POST"])
 def deletecandidate():
     email = request.form["email"]
-    #c = Candidate.query.filter_by(username=username).first()
     db.engine.execute(f"DELETE FROM `candidate` WHERE `email`='{email}'")
     
     return render_template('admin_interface.html')
@@ -273,14 +264,11 @@ def getcandi():
 
 @app.route('/vote',methods=['POST','GET'])
 def vote(): 
-    #query=db.engine.execute(f"SELECT * FROM `candidate` WHERE pid='{pid}'")
-    #print(query)
-    #query=Candidate.query.filter_by(pid=pid).first()
     if request.method=="POST":
         #pid=request.form.get('pid')
         username=request.form.get('username')
         query=db.engine.execute(f"INSERT INTO `vote` (`username`) VALUES ('{username}')")
-       # new=db.engine.execute(f"SELECT * FROM `user` WHERE id='{id}'")
+       
         return redirect(url_for('display'))
             
     
